@@ -6,5 +6,28 @@
 </head>
 <body>
   <h1>Profile viewer</h1>
+  <button id="btnLogin">Log In</button>
+  <p id="login">
+    You are not logged in.
+  </p>
+  <p id="logout">
+    You are logged in as <span id="user"></span>.
+  </p>
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js"
+    integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+    crossorigin="anonymous"></script>
+  <script src="https://solid.github.io/solid-auth-client/dist/solid-auth-client.bundle.js"></script>
+  <script>
+    const popupUri = 'popup.html';
+    $('#btnLogin').click(() => solid.auth.popupLogin({ popupUri }));
+
+    solid.auth.trackSession(session => {
+      const loggedIn = !!session;
+      $('#login').toggle(!loggedIn);
+      $('#logout').toggle(loggedIn);
+      $('#user').text(session && session.webId);
+    });
+  
+  </script>
 </body>
 </html>
