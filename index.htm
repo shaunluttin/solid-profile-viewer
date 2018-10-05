@@ -15,13 +15,16 @@
     <p>
       <label for="profile">Profile:</label>
       <input id="profile">
+      <p id="fullName"></p>
     </p>
+    <button id="btnView">View</button>
     <button id="btnLogout">Log Out</button>
   </p>
   <script src="https://code.jquery.com/jquery-3.3.1.min.js"
     integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
     crossorigin="anonymous"></script>
   <script src="https://solid.github.io/solid-auth-client/dist/solid-auth-client.bundle.js"></script>
+  <script src="https://linkeddata.github.io/rdflib.js/dist/rdflib.min.js"></script>
   <script>
     const popupUri = 'popup.html';
     $('#btnLogin').click(() => solid.auth.popupLogin({ popupUri }));
@@ -41,6 +44,22 @@
         if (!$('#profile').val())
           $('#profile').val(session.webId);
       }
+    });
+
+    const FOAF = $rdf.Namespace('http://xmlns.com/foaf/0.1/');
+    $('#btnView').click(async function loadProfile() {
+      // Set up a local data store and associated data fetcher
+      const store = $rdf.graph();
+      const fetcher = new $rdf.Fetcher(store);
+
+      // Load the person's data into the store
+      const person = $('#profile').val();
+
+      await fetcher.load(person);
+
+      // Display their details
+      const fullName = store.any($rdf.sym(person), FOAF('name'));
+      $('#fullName').text(fullName && fullName.value);
     });
   
   </script>
