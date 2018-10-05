@@ -12,6 +12,10 @@
   </p>
   <p id="logout">
     You are logged in as <span id="user"></span>.
+    <p>
+      <label for="profile">Profile:</label>
+      <input id="profile">
+    </p>
     <button id="btnLogout">Log Out</button>
   </p>
   <script src="https://code.jquery.com/jquery-3.3.1.min.js"
@@ -21,6 +25,7 @@
   <script>
     const popupUri = 'popup.html';
     $('#btnLogin').click(() => solid.auth.popupLogin({ popupUri }));
+    $('#btnLogout').click(() => solid.auth.logout());
 
     solid.auth.trackSession(session => {
       const loggedIn = !!session;
@@ -29,7 +34,14 @@
       $('#user').text(session && session.webId);
     });
 
-    $('#btnLogout').click(() => solid.auth.logout());
+    solid.auth.trackSession(session => {
+      // …
+      if (session) {
+        $('#user').text(session.webId);
+        if (!$('#profile').val())
+          $('#profile').val(session.webId);
+      }
+    });
   
   </script>
 </body>
