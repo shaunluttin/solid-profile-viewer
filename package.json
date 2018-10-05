@@ -1,0 +1,23 @@
+{
+  "name": "solid-profile-viewer",
+  "version": "0.0.1",
+  "description": "Inrupts 'Make a solid app on your lunch break' tutorial.",
+  "main": "''",
+  "scripts": {
+    "start": "ws",
+    "test": ""
+  },
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "keywords": [
+    "solid",
+    "tutorial"
+  ],
+  "author": "Shaun Luttin",
+  "license": "MIT",
+  "devDependencies": {
+    "local-web-server": "^2.6.0"
+  }
+}
