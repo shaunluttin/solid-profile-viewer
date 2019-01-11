@@ -7,26 +7,36 @@
 </head>
 
 <body>
-  <h1>Profile viewer</h1>
-  <p id="login">
-    You are not logged in.
-    <button id="btnLogin">Log In</button>
-  </p>
-  <p id="logout">
-    You are logged in as <span id="user"></span>.
-    <p>
-      <label for="profile">Profile:</label>
-      <input id="profile">
-      <p id="fullName"></p>
+  <section id="profileViewer">
+    <h1>Profile viewer</h1>
+    <p id="login">
+      You are not logged in.
+      <button id="btnLogin">Log In</button>
     </p>
-    <button id="btnView">View</button>
-    <button id="btnLogout">Log Out</button>
-  </p>
+    <p id="logout">
+      You are logged in as <span id="user"></span>.
+      <p>
+        <label for="profile">Profile:</label>
+        <input id="profile">
+        <p id="fullName"></p>
+      </p>
+      <button id="btnView">View Profile</button>
+      <button id="btnLogout">Log Out</button>
+    </p>
+  </section>
+  <section>
+    <h1>Linked Data Manipulation</h1>
+    <button id="btnManipulateData">Do Data Manipulation</button>
+  </section>
+
   <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
     crossorigin="anonymous"></script>
   <script src="https://solid.github.io/solid-auth-client/dist/solid-auth-client.bundle.js"></script>
   <script src="https://linkeddata.github.io/rdflib.js/dist/rdflib.min.js"></script>
-  <script src="index.js"></script>
+  <!-- These are for working thru https://solid.inrupt.com/docs -->
+  <script src="log.js"></script>
+  <script src="myProfileViewer.js"></script>
+  <script src="myLinkedDataManipulation.js"></script>
 </body>
 
 </html>
